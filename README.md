@@ -31,7 +31,10 @@ npm run build   # static export to out/ (Cloudflare Pages ready)
 - LinkedIn: `https://www.linkedin.com/in/ezekiel-ojo-2ba16133/` (always `target="_blank" rel="noopener noreferrer"`, no params)
 - Canonical domain placeholder: `data/site.ts` → `SITE.url`
 
-## Contact form
+## Contact form (WhatsApp-direct, no server)
 
-`components/ContactForm.tsx` — Name / Email / Project / Message, validated,
-honest demo-mode success state. Connect `submitInquiry()` to Formspree/Resend/Web3Forms to go live.
+`components/ContactForm.tsx` — Name / Email / Project / Message, validated.
+On submit it builds a prefilled message and opens `wa.me/2347045634257?text=…`
+in a new tab. The visitor presses send themselves — nothing is faked and
+nothing can fail silently server-side. No backend to maintain, and it works
+unchanged on Cloudflare Pages static hosting.

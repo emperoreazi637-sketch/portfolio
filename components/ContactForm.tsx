@@ -1,33 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
+import { SITE } from "@/data/site";
 
 const PROJECTS = ["Web Development", "AI Automation", "Workflow Integration", "AI Content System", "Other"];
 
 type Status = "idle" | "sending" | "success" | "error";
 
 /**
- * Minimal inquiry form: Name, Email, Project, Message.
- * No backend is wired — submitting validates, then resolves through the
- * placeholder `submitInquiry()` and says so honestly. To go live, replace
- * `submitInquiry` with Formspree / Resend / Web3Forms or a route handler.
+ * WhatsApp-direct inquiry form.
+ *
+ * There is no server involved: on submit the form validates, builds a
+ * prefilled WhatsApp message and opens it in a new tab/app via wa.me.
+ * The visitor sends the message themselves from their own WhatsApp —
+ * nothing is faked, and nothing can silently fail server-side.
  */
-async function submitInquiry(_data: Record<string, string>): Promise<void> {
-  // TODO: replace with a real form service, e.g.:
-  //   const res = await fetch("https://formspree.io/f/YOUR_ID", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(data),
-  //   });
-  //   if (!res.ok) throw new Error("form service error");
-  await new Promise((r) => setTimeout(r, 1000));
+function buildWhatsAppUrl(fields: Record<string, string>): string {
+  const lines = [
+    "New project inquiry (ojoezekiel.dev)",
+    "",
+    `Name: ${fields.name.trim()}`,
+    `Email: ${fields.email.trim()}`,
+    `Project: ${fields.project}`,
+    "",
+    "Message:",
+    fields.message.trim(),
+  ];
+  return `${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 export function ContactForm() {
   const [fields, setFields] = useState({ name: "", email: "", project: PROJECTS[0], message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [waUrl, setWaUrl] = useState("");
 
   function set(name: string, value: string) {
     setFields((f) => ({ ...f, [name]: value }));
@@ -43,13 +50,15 @@ export function ContactForm() {
     return Object.keys(e).length === 0;
   }
 
-  async function onSubmit(ev: React.FormEvent) {
+  function onSubmit(ev: React.FormEvent) {
     ev.preventDefault();
     if (status === "sending") return;
     if (!validate()) return;
     setStatus("sending");
     try {
-      await submitInquiry(fields);
+      const url = buildWhatsAppUrl(fields);
+      setWaUrl(url);
+      window.open(url, "_blank", "noopener,noreferrer");
       setStatus("success");
     } catch {
       setStatus("error");
@@ -63,18 +72,28 @@ export function ContactForm() {
     return (
       <div className="rounded-ctrl border border-line bg-card p-7" role="status">
         <CheckCircle2 className="text-pine" size={28} aria-hidden />
-        <h2 className="mt-3 font-display text-xl font-bold text-ink">Details recorded — demo mode.</h2>
+        <h2 className="mt-3 font-display text-xl font-bold text-ink">Opening WhatsApp…</h2>
         <p className="mt-2 font-body text-[15px] leading-relaxed text-gray">
-          No backend is connected yet, so nothing was sent. For an immediate reply, call{" "}
-          <strong className="text-ink">+234 704 563 4257</strong> or use WhatsApp on this page.
+          Your message was prepared{fields.name ? `, ${fields.name.split(" ")[0]}` : ""} — just press send in
+          WhatsApp to deliver it. Nothing was sent yet; you stay in control.
         </p>
-        <button
-          type="button"
-          onClick={() => { setStatus("idle"); setFields({ name: "", email: "", project: PROJECTS[0], message: "" }); }}
-          className="mt-5 min-h-[48px] rounded-ctrl-sm border border-ink/20 px-6 py-3 font-body text-[12px] font-bold tracking-[0.1em] text-ink hover:border-pine"
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex min-h-[52px] items-center gap-2 rounded-ctrl bg-pine px-7 py-3.5 font-body text-[13px] font-bold tracking-[0.08em] text-cream transition-colors hover:bg-pinedeep"
         >
-          WRITE ANOTHER
-        </button>
+          <MessageCircle size={16} aria-hidden /> OPEN WHATSAPP AGAIN
+        </a>
+        <div>
+          <button
+            type="button"
+            onClick={() => { setStatus("idle"); setWaUrl(""); setFields({ name: "", email: "", project: PROJECTS[0], message: "" }); }}
+            className="mt-3 inline-flex min-h-[44px] items-center font-body text-[13px] font-bold tracking-[0.08em] text-gray hover:text-ink"
+          >
+            WRITE ANOTHER
+          </button>
+        </div>
       </div>
     );
   }
@@ -113,17 +132,17 @@ export function ContactForm() {
       </div>
       {status === "error" && (
         <p role="alert" className="rounded-ctrl-sm border border-red-400 bg-red-50 px-4 py-3 font-body text-sm font-semibold text-red-800">
-          Something went wrong. Please try again — or WhatsApp +234 704 563 4257 directly.
+          WhatsApp didn&apos;t open. Please message +234 704 563 4257 directly.
         </p>
       )}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="group inline-flex min-h-[52px] items-center gap-2 rounded-ctrl bg-ink px-8 py-4 font-body text-[13px] font-bold tracking-[0.1em] text-cream transition-colors hover:bg-pine disabled:opacity-60"
+        className="group inline-flex min-h-[52px] items-center gap-2 rounded-ctrl bg-pine px-8 py-4 font-body text-[13px] font-bold tracking-[0.08em] text-cream transition-colors hover:bg-pinedeep disabled:opacity-60"
       >
-        {status === "sending" ? (<><Loader2 size={16} className="animate-spin" aria-hidden /> SENDING…</>) : (<>SEND MESSAGE <ArrowRight size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" /></>)}
+        {status === "sending" ? (<><Loader2 size={16} className="animate-spin" aria-hidden /> PREPARING…</>) : (<><MessageCircle size={16} aria-hidden /> SEND VIA WHATSAPP <ArrowRight size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" /></>)}
       </button>
-      <p className="font-body text-[12px] text-gray">Demo mode — no backend connected yet.</p>
+      <p className="font-body text-[12px] text-gray">Opens WhatsApp with your message prefilled — you press send.</p>
     </form>
   );
 }
