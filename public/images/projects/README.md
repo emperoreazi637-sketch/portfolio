@@ -5,7 +5,7 @@ with these **exact filenames** (lowercase, hyphens, `.png`):
 
 | File | Content |
 |---|---|
-| `flowfix-website.png` | FlowFix Plumbing Services website screenshot (hero, nav, service cards, CTA) |
+| `flowfix-website.jpg` | FlowFix Plumbing Services website screenshot (hero, nav, service cards, CTA) |
 | `voice-agent-workflow.png` | n8n voice agent workflow (webhook, AI agent, GPT-5, Gmail, Calendar, ElevenLabs) |
 | `content-automation-workflow.png` | n8n content pipeline (schedule trigger, AI generation, Sheets, LinkedIn/X/Facebook) |
 | `whatsapp-knowledge-workflow.png` | Large n8n WhatsApp knowledge workflow |

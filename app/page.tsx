@@ -251,7 +251,7 @@ export default function HomePage() {
             <ProjectImage
               src={PROJECTS[0].image}
               alt={PROJECTS[0].imageAlt}
-              filename="flowfix-website.png"
+              filename="flowfix-website.jpg"
               caption="FLOWFIX — WEB DEVELOPMENT"
             />
           </Reveal>

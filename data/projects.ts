@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
       "A professional plumbing services website designed to communicate trust, services and clear conversion paths through a structured responsive experience.",
     tags: ["Web Design", "Responsive Development", "UI/UX", "Conversion-focused Layout"],
     href: "/work/flowfix",
-    image: "/images/projects/flowfix-website.png",
+    image: "/images/projects/flowfix-website.jpg",
     imageAlt:
       "FlowFix Plumbing Services website screenshot showing the hero section with navigation, headline, call-to-action buttons and plumbing service cards",
     architecture: ["SERVICES", "TRUST SIGNALS", "QUOTE CTA", "EMERGENCY CONTACT"],
