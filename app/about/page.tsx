@@ -1,52 +1,61 @@
 import type { Metadata } from "next";
-import { CTA } from "@/components/CTA";
-import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/Reveal";
-import { APPROACH, ABOUT_CAPABILITIES, TOOLS } from "@/data/projects";
+import { CTA } from "@/components/CTA";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Ojo Ezekiel O. — AI Automation & Web Developer. Approach, capabilities and tools.",
+  description: "About Ojo Ezekiel O. — AI Automation & Web Developer. Approach, capabilities and contact.",
 };
 
-const WRAP = "mx-auto max-w-[1200px] px-5 md:px-8";
+const WRAP = "mx-auto max-w-[1400px] px-5 md:px-10";
+
+const CAPABILITIES = [
+  "AI Automation",
+  "Web Development",
+  "Workflow Engineering",
+  "API Integration",
+  "AI Content Systems",
+  "Digital Experiences",
+];
+
+const APPROACH = [
+  ["01", "DISCOVER", "Understand the problem, users and desired outcome."],
+  ["02", "MAP", "Break the workflow or experience into clear systems and steps."],
+  ["03", "DESIGN", "Create the structure, interface and interaction model."],
+  ["04", "BUILD", "Develop the website, automation or integrated system."],
+  ["05", "REFINE", "Test, improve and simplify."],
+  ["06", "DELIVER", "Ship a polished and usable final system."],
+];
 
 export default function AboutPage() {
   return (
     <>
       <section aria-labelledby="about-h1" className={`${WRAP} pb-14 pt-[120px] md:pt-[160px]`}>
         <Reveal>
-          <p className="font-body text-[12px] font-bold tracking-[0.2em] text-pine">ABOUT</p>
-          <h1 id="about-h1" className="display-tight mt-4 max-w-3xl font-display text-5xl font-bold text-ink md:text-6xl">
-            Developer of intelligent systems.
+          <p className="font-body text-[11px] tracking-[0.24em] text-muted"><span className="text-lime">ABOUT</span> — OJO EZEKIEL O.</p>
+          <h1 id="about-h1" className="display-tight mt-4 max-w-4xl font-display text-5xl font-bold text-cream md:text-7xl">
+            I turn ideas, processes and problems into useful digital systems.
           </h1>
-          <p className="mt-6 max-w-2xl font-body text-base leading-relaxed text-gray md:text-lg">
-            I&apos;m Ojo Ezekiel O., an AI Automation &amp; Web Developer. I build intelligent workflows,
-            modern websites and digital systems that turn complex processes into simple products — working
-            from Lagos, Nigeria with clients everywhere.
+          <p className="mt-6 max-w-2xl font-body text-base leading-relaxed text-muted md:text-lg">
+            I&apos;m Ojo Ezekiel O., an AI Automation &amp; Web Developer based in Lagos, working remotely
+            worldwide. My work sits at the intersection of automation, web development and practical
+            digital experiences.
           </p>
         </Reveal>
       </section>
 
-      <section aria-labelledby="approach-h" className="border-t border-line bg-card">
+      <section aria-labelledby="approach-h" className="border-t border-line bg-surface/60">
         <div className={`${WRAP} py-14 md:py-20`}>
-          <SectionHeading kicker="APPROACH" title={<span id="approach-h">How every project runs.</span>} />
-          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {APPROACH.map((a, i) => (
-              <li key={a}>
-                <Reveal delay={i * 0.05}>
-                  <div className="h-full rounded-ctrl bg-paper p-6">
-                    <p className="font-display text-sm font-bold text-golddeep">0{i + 1}</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-ink">{a}</h3>
-                    <p className="mt-1.5 font-body text-sm leading-relaxed text-gray">
-                      {[
-                        "Understand the problem, workflow or product idea first.",
-                        "Map the experience, architecture and automation logic.",
-                        "Develop the website, workflow, integrations and interfaces.",
-                        "Test, simplify and prepare the final system.",
-                      ][i]}
-                    </p>
-                  </div>
+          <Reveal>
+            <h2 id="approach-h" className="font-body text-[11px] tracking-[0.24em] text-muted"><span className="text-lime">APPROACH</span> — UNDERSTAND → DESIGN → BUILD → REFINE</h2>
+          </Reveal>
+          <ol className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {APPROACH.map(([n, t, d]) => (
+              <li key={n + t} className="bg-ink p-6">
+                <Reveal>
+                  <p className="font-display text-sm font-bold text-lime">{n}</p>
+                  <h3 className="mt-2 font-display text-xl font-bold text-cream">{t}</h3>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-muted">{d}</p>
                 </Reveal>
               </li>
             ))}
@@ -54,13 +63,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="capab-h" className={`${WRAP} grid gap-10 py-14 md:py-20 lg:grid-cols-2`}>
+      <section aria-labelledby="cap-h" className={`${WRAP} grid gap-10 py-14 md:py-20 lg:grid-cols-2`}>
         <div>
           <Reveal>
-            <h2 id="capab-h" className="font-body text-[11px] font-bold tracking-[0.22em] text-pine">CAPABILITIES</h2>
-            <ul className="mt-5 space-y-3">
-              {ABOUT_CAPABILITIES.map((c) => (
-                <li key={c} className="border-b border-line pb-3 font-display text-lg font-bold text-ink md:text-xl">
+            <h2 id="cap-h" className="font-body text-[11px] tracking-[0.24em] text-muted"><span className="text-lime">CAPABILITIES</span></h2>
+            <ul className="mt-5 space-y-0">
+              {CAPABILITIES.map((c) => (
+                <li key={c} className="border-b border-line py-3 font-display text-lg font-bold text-cream md:text-xl">
                   {c}
                 </li>
               ))}
@@ -69,16 +78,14 @@ export default function AboutPage() {
         </div>
         <div>
           <Reveal delay={0.08}>
-            <h2 className="font-body text-[11px] font-bold tracking-[0.22em] text-pine">TOOLS</h2>
-            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tools I use">
-              {TOOLS.map((t) => (
-                <li key={t} className="rounded-full border border-line bg-card px-4 py-2 font-body text-[13px] font-semibold text-ink">
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <CTA href="/contact">LET&apos;S WORK TOGETHER</CTA>
+            <h2 className="font-body text-[11px] tracking-[0.24em] text-muted"><span className="text-lime">POSITIONING</span></h2>
+            <p className="mt-5 font-body text-[15px] leading-relaxed text-muted md:text-base">
+              Not only an AI engineer, not only a web developer. The combination — automation systems plus
+              web experiences — is the work: workflows that do the heavy lifting, wrapped in interfaces
+              people can actually use.
+            </p>
+            <div className="mt-8">
+              <CTA href="/contact">WORK WITH ME</CTA>
             </div>
           </Reveal>
         </div>

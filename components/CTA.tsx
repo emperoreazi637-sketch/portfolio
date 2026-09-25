@@ -1,43 +1,24 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface CTAProps {
   href: string;
   children: React.ReactNode;
-  variant?: "dark" | "gold" | "ghost" | "light";
+  variant?: "lime" | "ghost";
   className?: string;
-  external?: boolean;
 }
 
-export function CTA({ href, children, variant = "dark", className = "", external = false }: CTAProps) {
+export function CTA({ href, children, variant = "lime", className = "" }: CTAProps) {
   const base =
-    "group inline-flex min-h-[48px] items-center gap-2 rounded-ctrl px-7 py-3.5 font-body text-[13px] font-bold tracking-[0.08em] transition-all duration-300";
+    "group inline-flex min-h-[48px] items-center gap-2 px-7 py-3.5 font-body text-[13px] font-bold tracking-[0.1em] transition-colors duration-200";
   const styles =
-    variant === "gold"
-      ? "bg-gold text-ink hover:bg-golddeep"
-      : variant === "ghost"
-        ? "border border-ink/20 text-ink hover:border-pine hover:text-pine"
-        : variant === "light"
-          ? "border border-cream/30 text-cream hover:border-gold hover:text-gold"
-          : "bg-ink text-cream hover:bg-pine";
-  const Icon = external ? ArrowUpRight : ArrowRight;
-  const inner = (
-    <>
-      <span>{children}</span>
-      <Icon size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
-    </>
-  );
-  const cls = `${base} ${styles} ${className}`;
-  if (external) {
-    return (
-      <a href={href} className={cls}>
-        {inner}
-      </a>
-    );
-  }
+    variant === "lime"
+      ? "bg-lime text-ink hover:brightness-110"
+      : "border border-line text-cream hover:border-lime hover:text-lime";
   return (
-    <Link href={href} className={cls}>
-      {inner}
+    <Link href={href} className={`${base} ${styles} ${className}`}>
+      <span>{children}</span>
+      <ArrowRight size={16} aria-hidden className="transition-transform duration-200 group-hover:translate-x-1" />
     </Link>
   );
 }

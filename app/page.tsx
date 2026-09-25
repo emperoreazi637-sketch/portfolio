@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { HeroStrip } from "@/components/HeroStrip";
+import { ArrowRight } from "lucide-react";
 import { SelectedWork } from "@/components/SelectedWork";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/Reveal";
 import { CTA } from "@/components/CTA";
-import { CAPABILITIES } from "@/data/projects";
+import { ProjectImage } from "@/components/ProjectImage";
+import { SERVICES, PROCESS_STEPS, TOOLKIT, PHILOSOPHY, PROJECTS } from "@/data/projects";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -15,60 +15,128 @@ export const metadata: Metadata = {
     "Ojo Ezekiel O. is an AI Automation & Web Developer building intelligent workflows, modern websites and digital experiences.",
 };
 
-const WRAP = "mx-auto max-w-[1200px] px-5 md:px-8";
+const WRAP = "mx-auto max-w-[1400px] px-5 md:px-10";
 
 export default function HomePage() {
   return (
     <>
-      {/* ============ 1. HERO ============ */}
-      <section aria-labelledby="hero-heading" className={`${WRAP} pb-16 pt-[120px] md:pb-20 md:pt-[160px]`}>
+      {/* ============ HERO ============ */}
+      <section aria-labelledby="hero-heading" className={`${WRAP} pb-16 pt-[130px] md:pb-24 md:pt-[170px]`}>
         <Reveal>
-          <p className="font-body text-[12px] font-bold tracking-[0.2em] text-pine">
-            OJO EZEKIEL O. — AI AUTOMATION &amp; WEB DEVELOPER
+          <p className="font-body text-[11px] tracking-[0.26em] text-muted">PORTFOLIO — 2026</p>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <p className="mt-6 font-display text-xl font-bold tracking-[0.06em] text-cream md:text-2xl">
+            AI AUTOMATION <span className="text-lime">&amp;</span> WEB DEVELOPER
           </p>
-          <h1 id="hero-heading" className="display-tight mt-5 max-w-4xl font-display text-[15vw] font-bold text-ink sm:text-7xl md:text-8xl">
-            I BUILD<br />INTELLIGENT<br />SYSTEMS<span className="text-golddeep">.</span>
+          <h1 id="hero-heading" className="display-tight mt-4 max-w-5xl font-display text-[13vw] font-bold text-cream sm:text-7xl md:text-8xl">
+            I BUILD<br />INTELLIGENT SYSTEMS<br />&amp; DIGITAL EXPERIENCES.
           </h1>
-          <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-gray md:text-lg">
-            AI Automation &amp; Web Developer building intelligent workflows, modern websites and useful
-            digital experiences.
+        </Reveal>
+        <Reveal delay={0.12}>
+          <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-muted md:text-lg">
+            I design and build automated workflows, modern websites and digital experiences that turn
+            ideas into practical systems.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+        </Reveal>
+        <Reveal delay={0.18}>
+          <div className="mt-8 flex flex-wrap gap-4">
             <CTA href="/work">VIEW MY WORK</CTA>
-            <CTA href="/contact" variant="ghost">LET&apos;S TALK</CTA>
+            <CTA href="/contact" variant="ghost">WORK WITH ME</CTA>
           </div>
-          <HeroStrip />
+        </Reveal>
+        <Reveal delay={0.24}>
+          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-3 border-t border-line pt-5 font-body text-[11px] tracking-[0.2em] text-muted">
+            <p>{SITE.location}</p>
+            <p aria-label="From idea to system to result">
+              IDEA <span className="text-lime">→</span> SYSTEM <span className="text-lime">→</span> RESULT
+            </p>
+          </div>
         </Reveal>
       </section>
 
-      {/* ============ 2. SELECTED WORK ============ */}
+      {/* ============ 01 ABOUT ============ */}
+      <section id="about" aria-labelledby="about-h" className={`${WRAP} scroll-mt-24 border-t border-line py-16 md:py-24`}>
+        <SectionHeading
+          index="01"
+          kicker="ABOUT"
+          title={<span id="about-h">I build systems that make digital work better.</span>}
+        />
+        <Reveal>
+          <div className="grid gap-8 lg:grid-cols-12">
+            <p className="font-body text-[15px] leading-relaxed text-muted md:text-base lg:col-span-5">
+              I&apos;m Ojo Ezekiel O., an AI Automation &amp; Web Developer focused on building intelligent
+              workflows, modern websites and practical digital experiences.
+            </p>
+            <p className="font-body text-[15px] leading-relaxed text-muted md:text-base lg:col-span-5 lg:col-start-7">
+              My work combines automation, web development, APIs, AI tools and thoughtful interface design to
+              turn complex processes into simple, usable systems.
+            </p>
+          </div>
+          <Link href="/about" className="group mt-8 inline-flex min-h-[44px] items-center gap-2 font-body text-[13px] font-bold tracking-[0.12em] text-cream transition-colors hover:text-lime">
+            MORE ABOUT ME
+            <ArrowRight size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* ============ 02 SERVICES ============ */}
+      <section id="services" aria-labelledby="services-h" className={`${WRAP} scroll-mt-24 border-t border-line py-16 md:py-24`}>
+        <SectionHeading index="02" kicker="SERVICES" title={<span id="services-h">What I do.</span>} />
+        <ol className="border-t border-line">
+          {SERVICES.map((s) => (
+            <li key={s.n}>
+              <Reveal>
+                <div className="group grid gap-1 border-b border-line py-6 transition-colors duration-200 md:grid-cols-[72px_1fr_1.3fr] md:items-baseline md:gap-8">
+                  <span className="font-display text-sm font-bold text-lime">{s.n}</span>
+                  <h3 className="font-display text-xl font-bold tracking-tight text-cream transition-transform duration-200 group-hover:translate-x-1 md:text-2xl">
+                    {s.title}
+                  </h3>
+                  <p className="font-body text-[14px] leading-relaxed text-muted">{s.body}</p>
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* ============ 03 SELECTED WORK ============ */}
       <section aria-labelledby="work-h" className={`${WRAP} border-t border-line py-16 md:py-24`}>
         <SectionHeading
-          kicker="PORTFOLIO"
-          title={<span id="work-h">Selected work.</span>}
-          intro="Three systems, three stories — each one built around a real problem."
+          index="03"
+          kicker="SELECTED WORK"
+          title={<span id="work-h">Featured work.</span>}
+          intro="Real systems and websites — shown as they are, with the actual artifacts."
         />
         <SelectedWork />
       </section>
 
-      {/* ============ 3. SERVICES ============ */}
-      <section aria-labelledby="cap-h" className="border-t border-line bg-card">
+      {/* ============ 04 CASE STUDIES ============ */}
+      <section aria-labelledby="cases-h" className="border-t border-line bg-surface/60">
         <div className={`${WRAP} py-16 md:py-24`}>
           <SectionHeading
-            kicker="CAPABILITIES"
-            title={<span id="cap-h">What I build.</span>}
+            index="04"
+            kicker="CASE STUDIES"
+            title={<span id="cases-h">How each system was built.</span>}
+            intro="Problem → process → solution → outcome. No fabricated numbers — only the delivered system."
           />
-          <ol className="border-t border-line">
-            {CAPABILITIES.map((c) => (
-              <li key={c.n}>
+          <ol className="grid gap-px border border-line bg-line md:grid-cols-2">
+            {PROJECTS.map((p) => (
+              <li key={p.slug} className="bg-ink">
                 <Reveal>
-                  <div className="group grid gap-1 border-b border-line py-5 transition-colors duration-300 hover:bg-paper md:grid-cols-[64px_1fr_1.2fr] md:items-baseline md:gap-6 md:px-3">
-                    <span className="font-display text-sm font-bold text-golddeep">{c.n}</span>
-                    <h3 className="font-display text-lg font-bold tracking-tight text-ink transition-transform duration-300 group-hover:translate-x-1 md:text-xl">
-                      {c.title}
+                  <Link href={p.href} className="group block p-6 transition-colors duration-200 hover:bg-surface md:p-8">
+                    <p className="font-body text-[11px] tracking-[0.22em] text-muted">
+                      <span className="text-lime">{p.index}</span> / {p.total} — {p.category}
+                    </p>
+                    <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-cream transition-transform duration-200 group-hover:translate-x-1 md:text-3xl">
+                      {p.name}
                     </h3>
-                    <p className="font-body text-[14px] leading-relaxed text-gray">{c.body}</p>
-                  </div>
+                    <p className="mt-2 font-body text-sm leading-relaxed text-muted">{p.description}</p>
+                    <span className="mt-4 inline-flex min-h-[44px] items-center gap-2 font-body text-[12px] font-bold tracking-[0.14em] text-cream group-hover:text-lime">
+                      READ CASE STUDY
+                      <ArrowRight size={15} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </Link>
                 </Reveal>
               </li>
             ))}
@@ -76,51 +144,116 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ 4. ABOUT ============ */}
-      <section aria-labelledby="about-h" className={`${WRAP} border-t border-line py-16 md:py-24`}>
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
+      {/* ============ 05 PROCESS ============ */}
+      <section id="process" aria-labelledby="process-h" className={`${WRAP} scroll-mt-24 border-t border-line py-16 md:py-24`}>
+        <SectionHeading index="05" kicker="PROCESS" title={<span id="process-h">From idea to system.</span>} />
+        <ol className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {PROCESS_STEPS.map((s) => (
+            <li key={s.n} className="bg-ink p-6 md:p-8">
+              <Reveal>
+                <p className="font-display text-sm font-bold text-lime">{s.n}</p>
+                <h3 className="mt-2 font-display text-xl font-bold text-cream">{s.title}</h3>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{s.body}</p>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* ============ 06 TOOLKIT ============ */}
+      <section aria-labelledby="toolkit-h" className="border-t border-line bg-surface/60">
+        <div className={`${WRAP} py-16 md:py-24`}>
+          <SectionHeading index="06" kicker="TOOLKIT" title={<span id="toolkit-h">Tools of the trade.</span>} />
           <Reveal>
-            <SectionHeading kicker="PROFILE" title={<span id="about-h">About me.</span>} />
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="font-display text-xl font-bold leading-snug text-ink md:text-2xl">
-              I&apos;m Ojo Ezekiel O., an AI Automation &amp; Web Developer interested in the space where
-              technology, automation and digital experiences meet.
-            </p>
-            <p className="mt-4 max-w-xl font-body text-[15px] leading-relaxed text-gray">
-              I enjoy turning complicated processes into simple, useful systems — software that removes work
-              instead of relocating it.
-            </p>
-            <Link href="/about" className="group mt-6 inline-flex min-h-[48px] items-center gap-2 font-body text-[13px] font-bold tracking-[0.1em] text-ink hover:text-pine">
-              MORE ABOUT ME
-              <ArrowRight size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            <ul className="flex flex-wrap gap-2.5" aria-label="Tools and technologies">
+              {TOOLKIT.map((t) => (
+                <li
+                  key={t}
+                  className="border border-line bg-ink px-5 py-2.5 font-body text-sm text-cream/85 transition-colors duration-200 hover:border-lime hover:text-lime"
+                >
+                  {t}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
 
-      {/* ============ 5. CONTACT CTA ============ */}
-      <section aria-labelledby="cta-h" className="on-dark bg-pine">
-        <div className={`${WRAP} py-16 text-center md:py-24`}>
+      {/* ============ 07 PHILOSOPHY ============ */}
+      <section aria-labelledby="phil-h" className={`${WRAP} border-t border-line py-16 md:py-24`}>
+        <SectionHeading index="07" kicker="WORKING PHILOSOPHY" title={<span id="phil-h">How I work.</span>} />
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {PHILOSOPHY.map((p) => (
+            <Reveal key={p.n}>
+              <div className="border-t border-line pt-5">
+                <p className="font-display text-sm font-bold text-lime">{p.n}</p>
+                <h3 className="mt-2 font-display text-xl font-bold text-cream">{p.title}</h3>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{p.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ============ CLIENT FEEDBACK (empty state — real reviews only) ============ */}
+      <section aria-labelledby="feedback-h" className="border-t border-line bg-surface/60">
+        <div className={`${WRAP} py-16 md:py-24`}>
+          <SectionHeading
+            index="08"
+            kicker="CLIENT FEEDBACK"
+            title={<span id="feedback-h">What people say.</span>}
+          />
           <Reveal>
-            <h2 id="cta-h" className="display-tight mx-auto max-w-2xl font-display text-4xl font-bold text-cream md:text-6xl">
-              Have something to build?
-            </h2>
-            <p className="mx-auto mt-4 max-w-md font-body text-[15px] leading-relaxed text-cream/70">
-              Let&apos;s turn the idea into a useful digital system.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <CTA href="/contact" variant="gold">LET&apos;S TALK</CTA>
-              <a
-                href={SITE.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex min-h-[48px] items-center gap-2 rounded-ctrl border border-cream/30 px-7 py-3.5 font-body text-[13px] font-bold tracking-[0.08em] text-cream transition-colors hover:border-gold hover:text-gold"
-              >
-                WHATSAPP
-                <ArrowUpRight size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+            <div className="border border-line bg-ink p-8 md:p-12">
+              <p className="max-w-xl font-body text-[15px] leading-relaxed text-muted">
+                Verified project feedback will appear here once confirmed — with real quotes, names and
+                roles. Nothing is published without attribution.
+              </p>
+              <p className="mt-4 font-body text-[11px] tracking-[0.22em] text-muted">
+                STATUS: <span className="text-lime">AWAITING FIRST VERIFIED REVIEW</span>
+              </p>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============ 08 CONTACT ============ */}
+      <section aria-labelledby="contact-h" className={`${WRAP} border-t border-line py-16 md:py-24`}>
+        <SectionHeading
+          index="09"
+          kicker="CONTACT"
+          title={<span id="contact-h">Have a system<br />that needs building?</span>}
+          intro="Let's turn the idea into something practical."
+        />
+        <Reveal>
+          <div className="grid gap-px border border-line bg-line sm:grid-cols-3">
+            <a href={SITE.phoneHref} className="group bg-ink p-6 transition-colors duration-200 hover:bg-surface">
+              <p className="font-body text-[11px] tracking-[0.22em] text-muted">PHONE</p>
+              <p className="mt-2 font-display text-lg font-bold text-cream group-hover:text-lime">{SITE.phone}</p>
+            </a>
+            <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="group bg-ink p-6 transition-colors duration-200 hover:bg-surface">
+              <p className="font-body text-[11px] tracking-[0.22em] text-muted">WHATSAPP</p>
+              <p className="mt-2 font-display text-lg font-bold text-cream group-hover:text-lime">Chat directly →</p>
+            </a>
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="group bg-ink p-6 transition-colors duration-200 hover:bg-surface">
+              <p className="font-body text-[11px] tracking-[0.22em] text-muted">LINKEDIN</p>
+              <p className="mt-2 font-display text-lg font-bold text-cream group-hover:text-lime">Profile →</p>
+            </a>
+          </div>
+          <div className="mt-8">
+            <CTA href="/contact">LET&apos;S WORK TOGETHER</CTA>
+          </div>
+        </Reveal>
+
+        {/* Visual anchor: first real artifact */}
+        <div className="mt-14">
+          <Reveal>
+            <ProjectImage
+              src={PROJECTS[0].image}
+              alt={PROJECTS[0].imageAlt}
+              filename="flowfix-website.png"
+              caption="FLOWFIX — WEB DEVELOPMENT"
+            />
           </Reveal>
         </div>
       </section>

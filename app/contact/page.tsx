@@ -1,68 +1,67 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, Phone, MessageCircle } from "lucide-react";
+import { MessageCircle, Phone, ArrowUpRight } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Ojo Ezekiel O. — phone, WhatsApp, LinkedIn or the inquiry form.",
+  description: "Contact Ojo Ezekiel O. — phone, WhatsApp, LinkedIn or the project inquiry form.",
 };
 
-const WRAP = "mx-auto max-w-[1200px] px-5 md:px-8";
+const WRAP = "mx-auto max-w-[1400px] px-5 md:px-10";
 
 export default function ContactPage() {
   return (
     <div className={`${WRAP} pb-20 pt-[120px] md:pt-[160px]`}>
-      <Reveal>
-        <p className="font-body text-[12px] font-bold tracking-[0.2em] text-pine">CONTACT</p>
-        <h1 className="display-tight mt-4 max-w-2xl font-display text-5xl font-bold text-ink md:text-6xl">
-          Let&apos;s build something useful.
-        </h1>
-        <p className="mt-4 max-w-md font-body text-[15px] leading-relaxed text-gray">
-          Have a website, automation workflow or digital product in mind? Let&apos;s talk.
-        </p>
-      </Reveal>
-
-      <div className="mt-10 grid gap-3 sm:grid-cols-3">
-        <Reveal>
-          <a href={SITE.phoneHref} className="group flex h-full min-h-[96px] flex-col justify-between rounded-ctrl bg-pine p-5 transition-colors hover:bg-pinedeep on-dark">
-            <span className="flex items-center gap-2 font-body text-[11px] font-bold tracking-[0.16em] text-gold">
-              <Phone size={14} aria-hidden /> PHONE
-            </span>
-            <span className="mt-2 font-display text-lg font-bold text-cream">{SITE.phone}</span>
-          </a>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="group flex h-full min-h-[96px] flex-col justify-between rounded-ctrl border border-line bg-card p-5 transition-colors hover:border-pine">
-            <span className="flex items-center gap-2 font-body text-[11px] font-bold tracking-[0.16em] text-pine">
-              <MessageCircle size={14} aria-hidden /> WHATSAPP
-            </span>
-            <span className="mt-2 flex items-center gap-1.5 font-display text-lg font-bold text-ink">
-              Chat on WhatsApp
-              <ArrowUpRight size={17} aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </a>
-        </Reveal>
+      <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
+        <div>
+          <Reveal>
+            <p className="font-body text-[11px] tracking-[0.24em] text-muted">CONTACT — 2026</p>
+            <h1 className="display-tight mt-4 font-display text-5xl font-bold text-cream md:text-6xl">
+              Have a system<br />that needs building?
+            </h1>
+            <p className="mt-5 max-w-md font-body text-[15px] leading-relaxed text-muted">
+              Let&apos;s turn the idea into something practical.
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="mt-10 space-y-3">
+              <a href={SITE.phoneHref} className="group flex items-center justify-between border border-line bg-surface p-5 transition-colors duration-200 hover:border-lime">
+                <span>
+                  <span className="block font-body text-[11px] tracking-[0.22em] text-muted">PHONE</span>
+                  <span className="mt-1 flex items-center gap-2 font-display text-xl font-bold text-cream">
+                    <Phone size={17} aria-hidden className="text-lime" /> {SITE.phone}
+                  </span>
+                </span>
+              </a>
+              <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border border-line bg-surface p-5 transition-colors duration-200 hover:border-lime">
+                <span>
+                  <span className="block font-body text-[11px] tracking-[0.22em] text-muted">WHATSAPP</span>
+                  <span className="mt-1 flex items-center gap-2 font-display text-xl font-bold text-cream">
+                    <MessageCircle size={17} aria-hidden className="text-lime" /> Chat directly
+                  </span>
+                </span>
+                <ArrowUpRight size={18} aria-hidden className="text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-lime" />
+              </a>
+              <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border border-line bg-surface p-5 transition-colors duration-200 hover:border-lime">
+                <span>
+                  <span className="block font-body text-[11px] tracking-[0.22em] text-muted">LINKEDIN</span>
+                  <span className="mt-1 font-display text-xl font-bold text-cream">Profile</span>
+                </span>
+                <ArrowUpRight size={18} aria-hidden className="text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-lime" />
+              </a>
+            </div>
+          </Reveal>
+        </div>
         <Reveal delay={0.1}>
-          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="group flex h-full min-h-[96px] flex-col justify-between rounded-ctrl border border-line bg-card p-5 transition-colors hover:border-pine">
-            <span className="font-body text-[11px] font-bold tracking-[0.16em] text-pine">LINKEDIN</span>
-            <span className="mt-2 flex items-center gap-1.5 font-display text-lg font-bold text-ink">
-              LinkedIn
-              <ArrowUpRight size={17} aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </a>
-        </Reveal>
-      </div>
-
-      <Reveal delay={0.1}>
-        <div className="mt-10 max-w-2xl">
-          <h2 className="font-display text-2xl font-bold text-ink">Send a message</h2>
-          <div className="mt-5">
+          <div className="border border-line bg-surface p-6 md:p-8">
+            <h2 className="font-display text-2xl font-bold text-cream">Send an inquiry</h2>
+            <p className="mb-6 mt-1 font-body text-sm text-muted">Opens WhatsApp with your message prefilled — you press send.</p>
             <ContactForm />
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </div>
   );
 }

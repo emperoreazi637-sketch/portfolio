@@ -1,40 +1,44 @@
-# Ojo Ezekiel O. — Portfolio (Minimal)
+# Ojo Ezekiel O. — Portfolio (Dark Editorial)
 
-Minimal, premium portfolio for **Ojo Ezekiel O., AI Automation & Web Developer**.
+Premium dark-editorial portfolio for **Ojo Ezekiel O., AI Automation & Web Developer**.
 Next.js 14 · TypeScript · Tailwind CSS · Framer Motion · Lucide.
 
-Palette: paper `#F7F6F2` · ink `#111111` · gray `#686868` · pine `#123C29` · gold `#F2B705`.
-Type: Space Grotesk (display) + Inter (body).
+Identity: bg `#0A0A0A` · surface `#111111` · text `#F4F1EA` · muted `#929292` ·
+borders `#292929` · accent `#C8FF3D` (used sparingly).
+Type: Space Grotesk (display) + Inter (body). Motion: opacity + ≤16px rise,
+300–700ms ease-out, `prefers-reduced-motion` supported, no childish effects.
 
 ## Routes
 
 | Route | Page |
 |---|---|
-| `/` | Hero → Selected Work → What I Build → About → dark CTA |
-| `/about` | Intro, approach, capabilities, tools |
-| `/work` | Problem → process → solution → outcome per project |
-| `/work/flowcut` · `/work/finly` · `/work/content-os` | Case studies |
-| `/contact` | Phone, WhatsApp, LinkedIn + minimal form |
+| `/` | Hero → 01 About → 02 Services → 03 Selected Work → 04 Case studies → 05 Process → 06 Toolkit → 07 Philosophy → Feedback (empty state) → Contact |
+| `/about` | Intro, approach, capabilities |
+| `/work` | Index of the four real projects |
+| `/work/flowfix` | Plumbing website case study (real screenshot) |
+| `/work/voice-agent` | AI voice agent workflow case study (real screenshot) |
+| `/work/content-automation` | Social content pipeline case study (real screenshot) |
+| `/work/whatsapp-knowledge` | WhatsApp knowledge system case study (real screenshot) |
+| `/contact` | Phone, WhatsApp, LinkedIn + WhatsApp-direct form |
 
-## Run
+## Real project screenshots (REQUIRED)
+
+Drop the four supplied PNGs into `public/images/projects/` with exact names —
+see `public/images/projects/README.md`. Slots render until files exist; no
+fake mockups or stock images anywhere.
+
+## Live facts (verified, do not change without asking)
+
+- Phone `+234 704 563 4257` (`tel:+2347045634257`)
+- WhatsApp `https://wa.me/2347045634257`
+- LinkedIn `https://www.linkedin.com/in/ezekiel-ojo-2ba16133/` (`target="_blank" rel="noopener noreferrer"`, no params)
+- No email published. No testimonials, metrics, clients or employers invented.
+- Contact form opens WhatsApp prefilled (`components/ContactForm.tsx`).
+
+## Run / deploy
 
 ```bash
 npm install
 npm run dev
 npm run build   # static export to out/ (Cloudflare Pages ready)
 ```
-
-## Live facts (verified, do not change without asking)
-
-- Phone: `+234 704 563 4257` (`tel:+2347045634257`)
-- WhatsApp: `https://wa.me/2347045634257` (cards, footer, floating button, final CTA)
-- LinkedIn: `https://www.linkedin.com/in/ezekiel-ojo-2ba16133/` (always `target="_blank" rel="noopener noreferrer"`, no params)
-- Canonical domain placeholder: `data/site.ts` → `SITE.url`
-
-## Contact form (WhatsApp-direct, no server)
-
-`components/ContactForm.tsx` — Name / Email / Project / Message, validated.
-On submit it builds a prefilled message and opens `wa.me/2347045634257?text=…`
-in a new tab. The visitor presses send themselves — nothing is faked and
-nothing can fail silently server-side. No backend to maintain, and it works
-unchanged on Cloudflare Pages static hosting.

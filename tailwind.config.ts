@@ -9,24 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F7F6F2",
-        ink: "#111111",
-        gray: "#686868",
-        pine: "#123C29",
-        pinedeep: "#0C2B1D",
-        gold: "#F2B705",
-        golddeep: "#C79404",
-        card: "#FFFFFF",
-        line: "#E4E1D8",
-        pineline: "#23573D",
+        ink: "#0A0A0A",
+        surface: "#111111",
+        cream: "#F4F1EA",
+        muted: "#929292",
+        line: "#292929",
+        lime: "#C8FF3D",
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],
         body: ["var(--font-body)", "system-ui", "sans-serif"],
-      },
-      borderRadius: {
-        ctrl: "12px",
-        "ctrl-sm": "8px",
       },
     },
   },

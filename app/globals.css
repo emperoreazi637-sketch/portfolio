@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg: #f7f6f2;
-  --ink: #111111;
-  --gray: #686868;
-  --pine: #123c29;
-  --gold: #f2b705;
-  --line: #e4e1d8;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --cream: #f4f1ea;
+  --muted: #929292;
+  --line: #292929;
+  --lime: #c8ff3d;
 }
 
 html {
@@ -17,28 +17,23 @@ html {
 
 body {
   background: var(--bg);
-  color: var(--ink);
+  color: var(--cream);
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #f2b705;
-  color: #111111;
+  background: #c8ff3d;
+  color: #0a0a0a;
 }
 
 :focus-visible {
-  outline: 2px solid #123c29;
+  outline: 2px solid #c8ff3d;
   outline-offset: 3px;
-  border-radius: 4px;
-}
-.on-dark :focus-visible,
-.on-dark:focus-visible {
-  outline-color: #f2b705;
 }
 
-/* Underline link */
+/* Restrained editorial underline */
 .u-link {
   position: relative;
 }
@@ -47,12 +42,12 @@ body {
   position: absolute;
   left: 0;
   bottom: -3px;
-  height: 2px;
+  height: 1px;
   width: 100%;
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.25s ease-out;
 }
 .u-link:hover::after,
 .u-link:focus-visible::after {
@@ -61,8 +56,8 @@ body {
 }
 
 .display-tight {
-  letter-spacing: -0.025em;
-  line-height: 0.98;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -75,6 +70,6 @@ body {
 }
 
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #f7f6f2; }
-::-webkit-scrollbar-thumb { background: #cfccc0; border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: #123c29; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #292929; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
